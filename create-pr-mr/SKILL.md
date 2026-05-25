@@ -5,41 +5,34 @@ description: Prepare and create pull requests or merge requests with clear summa
 
 # Create PR or MR
 
-## Quick Start
+## Flow
 
-1. Inspect repo state: `git status --short`, `git branch --show-current`, `git remote -v`, and recent commits.
-2. Identify the hosting tool:
-   - GitHub: prefer `gh pr create`
-   - GitLab: prefer `glab mr create`
-   - Unknown or unavailable CLI: prepare the title/body and tell the user what could not be run.
-3. Confirm the branch is pushed or push it when appropriate.
-4. Create a concise PR/MR with:
-   - Title matching the change, often Conventional Commit style.
-   - Summary bullets focused on behavior.
-   - Test or verification notes.
-   - Risk, rollout, or follow-up notes when relevant.
+1. Inspect: `git status --short`, `git branch --show-current`, `git remote -v`, recent commits.
+2. Detect host CLI:
+   - GitHub: `gh pr create`
+   - GitLab: `glab mr create`
+   - Missing/unknown: draft title/body and say what could not run.
+3. Check existing PR/MR first.
+4. Push branch when appropriate.
+5. Create concise PR/MR; report URL and any caveats.
 
-## Before Creating
+## Checks
 
-Check whether the branch already has an open review request with `gh pr view --json number,title,url,state` or `glab mr view`.
+- Existing review request: `gh pr view --json number,title,url,state` or `glab mr view`.
+- If one exists, update or report it. Do not duplicate.
+- Ready commits: `git status --short`, `git log --oneline origin/HEAD..HEAD`.
+- If `origin/HEAD` missing, infer default branch from remotes/conventions: `main`, `master`, `develop`.
 
-If a PR/MR already exists, update or report it instead of creating a duplicate.
+## Branch
 
-Make sure local commits are ready with `git status --short` and `git log --oneline origin/HEAD..HEAD`.
+- Use current branch unless user named another.
+- Avoid PRs/MRs from protected default branches.
+- Push: `git push -u origin HEAD`.
+- If network/auth fails, stop with exact blocker. Never invent a URL.
 
-If `origin/HEAD` is unavailable, inspect remotes and infer the default branch from repo conventions such as `main`, `master`, or `develop`.
+## Body
 
-## Branch and Push
-
-Use the current branch unless the user requested a different one. Avoid creating PRs from protected default branches.
-
-Push the branch non-interactively with `git push -u origin HEAD`.
-
-If network access or credentials fail, stop and report the exact blocker. Do not invent a PR URL.
-
-## PR/MR Body Template
-
-Use this structure by default:
+Default:
 
 ```md
 ## Summary
@@ -53,30 +46,34 @@ Use this structure by default:
 - ...
 ```
 
-Omit `Notes` when there is nothing meaningful to say. Include screenshots or links only when they exist.
+Omit `Notes` when empty. Add screenshots/links only when real.
 
-For bug fixes, mention the user-visible problem and the corrected behavior. For UI changes, include screenshots or state that screenshots were not captured. For migrations or operational changes, include rollout and rollback notes.
+Content:
+
+- Title fits change; Conventional Commit style is fine.
+- Summary = behavior changed.
+- Verification = tests/checks run, or not run with reason.
+- Bug fix: problem and corrected behavior.
+- UI: screenshots or say not captured.
+- Migration/ops: rollout and rollback notes.
+- Risks/follow-ups only when useful.
 
 ## GitHub
 
-Create a PR with `gh pr create --base main --head current-branch --title "..." --body "..."`.
-
-Use `--draft` when the user asks for a draft or when the change is intentionally not ready for review.
-
-Useful follow-ups: `gh pr view --web`, `gh pr checks`, and `gh pr edit --title "..." --body "..."`.
+- Create: `gh pr create --base main --head current-branch --title "..." --body "..."`
+- Draft: add `--draft` when user asks or work is not review-ready.
+- Useful: `gh pr checks`, `gh pr edit --title "..." --body "..."`, `gh pr view --web`.
 
 ## GitLab
 
-Create an MR with `glab mr create --target-branch main --source-branch current-branch --title "..." --description "..."`.
+- Create: `glab mr create --target-branch main --source-branch current-branch --title "..." --description "..."`
+- Draft/WIP when user asks or work is not review-ready.
+- Useful: `glab mr view`, `glab mr update --title "..." --description "..."`.
 
-Use draft status when the user asks for draft/WIP or the work is not ready.
+## Hygiene
 
-Useful follow-ups: `glab mr view` and `glab mr update --title "..." --description "..."`.
-
-## Review Hygiene
-
-- State the PR/MR URL after creation.
-- Mention any tests that were not run and why.
-- Do not hide local uncommitted changes. If unrelated changes remain, say so.
-- Do not force-push, rebase public branches, or retarget branches unless the user requested it.
-- Keep the title and body factual; avoid marketing language.
+- State URL after creation.
+- Mention tests not run and why.
+- Say if unrelated local changes remain.
+- No force-push, public-branch rebase, or retarget unless user asked.
+- Factual title/body. No marketing gloss.

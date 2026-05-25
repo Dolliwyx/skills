@@ -5,59 +5,60 @@ description: Create git commits using Conventional Commits with scoped, reviewab
 
 # Conventional Commits
 
-## Quick Start
+## Flow
 
-1. Inspect the worktree: `git status --short`, `git diff --stat`, `git diff`, and `git diff --staged`.
-2. Identify which changes belong to the requested commit.
-3. Stage only relevant files or hunks.
-4. Write a Conventional Commit message:
-   - `type(scope): summary`
-   - Body when context, motivation, or risk notes matter.
-   - Footer for breaking changes or issue references.
-5. Commit non-interactively with `git commit -m "type(scope): summary"` and extra `-m` paragraphs when needed.
+1. Inspect: `git status --short`, `git diff --stat`, `git diff`, `git diff --staged`.
+2. Decide what belongs in this commit.
+3. Stage only those files or hunks.
+4. Message: `type(scope): summary`.
+5. Commit non-interactively: `git commit -m "type(scope): summary"`.
 
-## Commit Message Rules
+Add extra `-m` paragraphs only when context, risk, issue refs, or breaking-change notes help.
 
-Use lowercase type names. Prefer:
+## Message
 
-- `feat`: user-facing or product capability
+Format: `type(scope): summary`
+
+Types, lowercase:
+
+- `feat`: new user/product capability
 - `fix`: bug fix
-- `docs`: documentation only
-- `style`: formatting only, no behavior change
-- `refactor`: code restructuring without behavior change
-- `perf`: performance improvement
+- `docs`: docs only
+- `style`: formatting only
+- `refactor`: restructure, no behavior change
+- `perf`: speed/resource improvement
 - `test`: tests only
-- `build`: build system or dependency changes
-- `ci`: CI configuration
-- `chore`: maintenance that does not fit above
-- `revert`: revert a previous commit
+- `build`: build/deps/package changes
+- `ci`: CI config
+- `chore`: maintenance
+- `revert`: undo a commit
 
-Use a scope when it clarifies ownership or affected area, such as `api`, `ui`, `auth`, `deps`, `docs`, or a package name. Omit scope when it would be vague.
+Scope when useful: `api`, `ui`, `auth`, `deps`, `docs`, package name. Skip vague scopes.
 
-Keep the summary imperative, specific, and under about 72 characters. Do not end it with punctuation.
+Summary: imperative, specific, about 72 chars or less, no ending punctuation.
 
-Examples: `feat(auth): add passkey registration`, `fix(api): reject expired invite tokens`, `docs: document local setup`.
+Good:
 
-## Safety Workflow
+- `feat(auth): add passkey registration`
+- `fix(api): reject expired invite tokens`
+- `docs: document local setup`
 
-Before staging or committing:
+## Safety
 
-- Check for unrelated user changes and leave them untouched.
-- If the worktree contains unrelated edits in files needed for the commit, inspect carefully and stage only the relevant hunks.
-- Never run destructive git commands such as `git reset --hard` or `git checkout --` unless the user explicitly requested them.
-- If pre-commit hooks modify files, inspect the resulting diff before attempting another commit.
+- Leave unrelated user changes alone.
+- If related and unrelated edits share a file, inspect and stage hunks only.
+- No destructive git commands unless user explicitly asked.
+- If hooks change files, inspect the new diff before retrying.
 
-## Staging Guidance
+## Staging
 
-Use file staging for cleanly related files: `git add path/to/file`.
+- Clean related files: `git add path/to/file`.
+- Mixed files: `git add -p path/to/file`.
+- Verify staged work: `git diff --staged --stat`, then `git diff --staged`.
 
-Use patch staging when relevant and unrelated edits share a file: `git add -p path/to/file`.
+## Body
 
-After staging, verify with `git diff --staged --stat` and `git diff --staged`.
-
-## Commit Body
-
-Add a body when the summary alone does not explain the change:
+Use a body when the summary cannot carry the why:
 
 ```sh
 git commit \
@@ -67,12 +68,10 @@ git commit \
 
 ## Breaking Changes
 
-Use `!` and a footer for breaking changes:
+Use `!` plus footer only when callers, users, stored data, or deploy expectations must change:
 
 ```text
 feat(api)!: rename token exchange endpoint
 
 BREAKING CHANGE: /token/exchange is replaced by /oauth/token.
 ```
-
-Only mark a breaking change when callers, users, stored data, or deployment expectations must change.
