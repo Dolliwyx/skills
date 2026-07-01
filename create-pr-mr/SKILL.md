@@ -1,6 +1,6 @@
 ---
 name: create-pr-mr
-description: Prepare and create pull requests or merge requests with clear summaries, test notes, and correct target branches. Use when the user asks to create, open, draft, update, or prepare a PR, pull request, MR, or merge request.
+description: Prepare and create pull requests or merge requests with clear change summaries, affected files, and correct target branches. Use when the user asks to create, open, draft, update, or prepare a PR, pull request, MR, or merge request.
 ---
 
 # Create PR or MR
@@ -35,28 +35,27 @@ description: Prepare and create pull requests or merge requests with clear summa
 Default:
 
 ```md
-## Summary
+## Changes
 - ...
 - ...
 
-## Verification
-- ...
-
-## Notes
-- ...
+## Files affected
+- `path/to/file`: ...
+- `path/to/other`: ...
 ```
 
-Omit `Notes` when empty. Add screenshots/links only when real.
+Add screenshots/links only when real.
 
 Content:
 
 - Title fits change; Conventional Commit style is fine.
-- Summary = behavior changed.
-- Verification = tests/checks run, or not run with reason.
+- Changes = behavior changed.
+- Files affected = concise list of touched files or directories and why they changed.
+- Do not add `Tests`, `Verification`, or test-run notes to the PR/MR body.
 - Bug fix: problem and corrected behavior.
-- UI: screenshots or say not captured.
-- Migration/ops: rollout and rollback notes.
-- Risks/follow-ups only when useful.
+- UI: screenshots only when captured.
+- Migration/ops: rollout and rollback notes only if directly part of the change.
+- Risks/follow-ups only when useful and directly tied to affected files.
 
 ## GitHub
 
@@ -73,7 +72,6 @@ Content:
 ## Hygiene
 
 - State URL after creation.
-- Mention tests not run and why.
 - Say if unrelated local changes remain.
 - No force-push, public-branch rebase, or retarget unless user asked.
 - Factual title/body. No marketing gloss.
