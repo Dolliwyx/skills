@@ -11,9 +11,10 @@ description: Create git commits using Conventional Commits with scoped, reviewab
 2. Decide what belongs in this commit.
 3. Stage only those files or hunks.
 4. Message: `type(scope): summary`.
-5. Commit non-interactively: `git commit -m "type(scope): summary"`.
+5. Description: add a short body after the summary when possible, explaining what changed and why.
+6. Commit non-interactively: `git commit -m "type(scope): summary" -m "Description."`.
 
-Add extra `-m` paragraphs only when context, risk, issue refs, or breaking-change notes help.
+Use the second `-m` paragraph whenever there is enough useful context. Skip it only for trivial commits where the summary fully explains the change.
 
 ## Message
 
@@ -56,14 +57,14 @@ Good:
 - Mixed files: `git add -p path/to/file`.
 - Verify staged work: `git diff --staged --stat`, then `git diff --staged`.
 
-## Body
+## Body / Description
 
-Use a body when the summary cannot carry the why:
+Prefer a short body after the summary when it adds useful context. Describe what changed and why; avoid restating the summary.
 
 ```sh
 git commit \
   -m "fix(cache): prevent stale workspace reads" \
-  -m "Invalidate cached workspace metadata when the selected account changes." \
+  -m "Invalidate cached workspace metadata when the selected account changes."
 ```
 
 ## Breaking Changes
