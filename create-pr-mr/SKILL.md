@@ -35,6 +35,9 @@ description: Prepare and create pull requests or merge requests with clear chang
 Default:
 
 ```md
+## Summary
+Briefly state what this PR/MR is for in 1-2 sentences.
+
 ## Changes
 - ...
 - ...
@@ -49,6 +52,7 @@ Add screenshots/links only when real.
 Content:
 
 - Title fits change; Conventional Commit style is fine.
+- Summary = short purpose/context before the change list.
 - Changes = behavior changed.
 - Files affected = concise list of touched files or directories and why they changed.
 - Do not add `Tests`, `Verification`, or test-run notes to the PR/MR body.
