@@ -9,7 +9,7 @@ Produce clear, task-focused documentation for technical readers.
 
 ## 1. Resolve the applicable guidance
 
-Apply guidance in this order:
+Honor explicit user requirements within the instruction hierarchy. For style choices the request leaves open, apply guidance in this order:
 
 1. Project or product-specific requirements.
 2. The [Google developer documentation style guide](https://developers.google.com/style).
@@ -23,7 +23,9 @@ Identify the intended reader, what they need to accomplish or understand, prereq
 
 For existing documentation, preserve its technical meaning. Flag uncertain facts instead of inventing details.
 
-## 3. Draft or edit
+## 3. Draft, edit, or review
+
+For review-only requests, inspect the documentation and report findings with suggested changes; rewrite or edit only when requested.
 
 Use the core rules in [the review checklist](references/REVIEW-CHECKLIST.md). Organize content around the reader's goal, put required context before actions, and make the shortest complete path easy to scan.
 
@@ -43,4 +45,4 @@ Resolve every applicable item. If project guidance intentionally differs from Go
 
 ## Output
 
-Return the finished documentation in the requested format. For a style review, provide the revised text first, then a concise list of material changes or unresolved technical questions.
+For drafting or editing, return the finished documentation in the requested format. For a review-only request, return concise findings, suggested changes, and unresolved technical questions without modifying files. If the user also requests a rewrite, provide the revised text and a concise list of material changes.
