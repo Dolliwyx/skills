@@ -5,6 +5,10 @@ description: Create git commits using Conventional Commits with scoped, reviewab
 
 # Conventional Commits
 
+## Commit Boundaries
+
+When the user requests commits, separate distinct concerns when each commit remains coherent and verifiable. Do not create commits unless requested or required by the repository workflow.
+
 ## Flow
 
 1. Inspect: `git status --short`, `git diff --stat`, `git diff`, `git diff --staged`.
