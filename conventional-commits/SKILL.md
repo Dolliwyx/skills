@@ -7,16 +7,23 @@ description: Create git commits using Conventional Commits with scoped, reviewab
 
 ## Commit Boundaries
 
-When the user requests commits, separate distinct concerns when each commit remains coherent and verifiable. Do not create commits unless requested or required by the repository workflow.
+Resolve the authorized operation from the request and applicable repository workflow:
+
+- Message only: inspect the relevant changes and return the message without staging or committing.
+- Staging only: stage the requested changes and report the staged scope without committing.
+- Commit: stage and commit only the authorized changes.
+
+When the user requests commits, separate distinct concerns when each commit remains coherent and verifiable.
 
 ## Flow
 
 1. Inspect: `git status --short`, `git diff --stat`, `git diff`, `git diff --staged`.
-2. Decide what belongs in this commit.
-3. Stage only those files or hunks.
-4. Message: `type(scope): summary`.
-5. Description: add a short body after the summary when possible, explaining what changed and why.
-6. Commit non-interactively: `git commit -m "type(scope): summary" -m "Description."`.
+2. Decide which files or hunks belong in the authorized operation, including any changes already staged.
+3. For staging or commit requests, stage only those files or hunks and verify the staged diff. Stop here for staging-only requests.
+4. Message: `type(scope): summary`, with a short body when useful to explain what changed and why.
+5. Return the complete message without mutation for message-only requests.
+6. For commit requests, confirm the commit will contain only authorized changes, then commit non-interactively: `git commit -m "type(scope): summary" -m "Description."`.
+7. Verify the resulting commit's files and diff, then report its hash and any remaining changes.
 
 Use the second `-m` paragraph whenever there is enough useful context. Skip it only for trivial commits where the summary fully explains the change.
 
@@ -52,6 +59,7 @@ Good:
 
 - Leave unrelated user changes alone.
 - If related and unrelated edits share a file, inspect and stage hunks only.
+- Account for unrelated changes already staged: ordinary `git commit` includes the entire index, not just the files most recently added. Preserve unrelated staged and unstaged work. If safely separating the requested commit requires a decision about that work, ask before changing its staging or committing.
 - No destructive git commands unless user explicitly asked.
 - If hooks change files, inspect the new diff before retrying.
 
