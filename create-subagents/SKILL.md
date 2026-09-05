@@ -15,17 +15,17 @@ Determine the agent's name, purpose, scope, capabilities, model, and thinking le
 - Project: `.pi/agents/<name>.md`
 - Shared project fallback: `.agents/agents/<name>.md`
 
-Priority is `.pi` project, `.agents` project, then global. An exact filename match overrides a built-in agent. This step is complete when one destination and one behavioral contract are unambiguous.
+Priority is `.pi` project, `.agents` project, then global. An exact filename match overrides a built-in agent. Creating or configuring the definition does not authorize launching the agent. This step is complete when one destination and one behavioral contract are unambiguous.
 
 ## 2. Pin execution policy
 
-Use frontmatter to enforce capabilities instead of relying on prose. Include only fields needed by the contract:
+Use frontmatter to restrict exposed tools and extensions. Tool selection limits available interfaces; it does not constrain everything an allowed tool can do. Behavioral instructions are not a substitute for sandbox-enforced restrictions. Include only fields needed by the contract:
 
 ```yaml
 ---
 description: When this agent should be used
 display_name: Optional UI name
-tools: read, grep, find, ls, bash
+tools: read, grep, find, ls
 model: provider/model-id
 thinking: high
 prompt_mode: replace
@@ -35,7 +35,7 @@ prompt_mode: replace
 Key fields:
 
 - `tools`: built-ins, `*`, `none`, or `ext:<extension>/<tool>` selectors
-- `extensions`: `true`, `false`, or an explicit list
+- `extensions`: `true`, `false`, or an explicit list; set explicitly when extension access affects the requested capability boundary
 - `disallowed_tools`: deny tools after allowlisting
 - `model`: exact `provider/modelId` preferred
 - `thinking`: `off`, `minimal`, `low`, `medium`, `high`, `xhigh`, or `max`
@@ -53,7 +53,9 @@ Write the Markdown body as an operational system prompt:
 3. Define a checkable output contract.
 4. Put hard safety boundaries in frontmatter where possible; pair unavoidable prohibitions with the positive behavior to follow.
 
-For read-only agents, omit `write` and `edit`; restrict Bash to named read-only uses in the body. For agents that modify code, name verification expectations and keep changes scoped to the assigned task. This step is complete when the agent can execute without hidden assumptions or unrelated behavior.
+For read-only agents, omit `write` and `edit`. Also omit Bash unless shell access is necessary. If Bash is needed, state its permitted read-only uses and describe that limit as behavioral: unrestricted shell access can still mutate files or access resources. If the contract requires enforced read-only access, require a supporting sandbox or report that the available tool configuration cannot enforce it.
+
+For agents that modify code, name verification expectations and keep changes scoped to the assigned task. Generated workers must follow the applicable delegation policy. Under a no-further-delegation policy, explicitly require them to work directly and return blockers to the parent; exclude delegation tools where the configuration supports doing so. This step is complete when the agent can execute without hidden assumptions or unrelated behavior.
 
 ## 4. Verify the definition
 
@@ -62,7 +64,8 @@ Read the completed file and confirm all of the following:
 - Destination matches the requested scope and precedence.
 - Filename is the intended `subagent_type`, including built-in override casing where relevant.
 - YAML is valid and the description explains when to use the agent.
-- Tool access matches the role.
+- Tool and extension access match the role; behavioral restrictions are distinguished from enforced boundaries.
+- The definition follows the applicable delegation policy and does not grant unrequested delegation capabilities.
 - A pinned model exists and thinking is supported; report any clamping risk.
 - Body and frontmatter agree.
 - No duplicated or no-op instruction remains.
