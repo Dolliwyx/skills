@@ -16,7 +16,7 @@ The preflight is complete when the request, environment, implementation scope, a
 
 ## Execution
 
-1. Create the minimum topology needed with `herdr_layout`. Default to a sibling pane in the caller's tab and working directory, and preserve focus unless the user asks otherwise.
+1. Create a fresh pane with `herdr_layout` for each new delegated workstream. Default to a sibling pane in the caller's tab and working directory; if the user names a workspace, create the pane there. Preserve focus unless the user asks otherwise. Reuse a pane only when it was created for the same workstream or the user explicitly identifies that pane or agent for reuse. An idle agent is not permission to reuse its pane, and naming a workspace does not authorize messaging its existing agents. Before sending a prompt, verify that the target pane meets one of these conditions.
 2. Use Herdr only for implementation. Split panes only for independent workstreams or when the user explicitly requests multiple panes.
 3. Start `pi` through `herdr_agent` using the implementation model and reasoning effort from the applicable configuration and project policy. Honor explicit user choices within the instruction hierarchy; do not impose a skill-specific maximum effort.
 4. Give each pane a bounded scope, relevant context, observable success criteria, expected verification, and explicit file ownership. Use isolated checkouts if concurrent modifications could overlap. Require workers to preserve changes outside their assignment.
