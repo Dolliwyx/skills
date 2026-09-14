@@ -16,7 +16,16 @@ Preflight is complete when authorization, environment, role, and scope are expli
 
 ## Worker Model Selection
 
-Honor explicit user choices. Otherwise select by ambiguity and consequence, not task size alone:
+Honor explicit user choices. Otherwise use provider `openai-codex` with these exact model IDs:
+
+| Alias | Model ID |
+|---|---|
+| astra | `gpt-6-astra` |
+| sol | `gpt-5.6-sol` |
+| terra | `gpt-5.6-terra` |
+| luna | `gpt-5.6-luna` |
+
+Select the worker tier by ambiguity and consequence, not task size alone:
 
 | Model | Assignment | Reasoning |
 |---|---|---|
@@ -26,7 +35,7 @@ Honor explicit user choices. Otherwise select by ambiguity and consequence, not 
 
 When uncertain between worker tiers, choose the stronger tier. Reserve xhigh/max for unusually difficult problems when lower effort proves insufficient. Workers return unexpected complexity to the main agent rather than changing scope or delegating.
 
-Resolve the exact available provider/model ID and supported reasoning setting from local configuration or Pi's model listing before launch. Pass them explicitly in `herdr_agent start` arguments; do not rely on an inherited default or invent an ID. If the selected model is unavailable, report it to the main thread for a routing decision.
+Verify the selected provider/model pair and supported reasoning setting in local configuration or Pi's model listing before launch. Pass the provider, exact model ID, and reasoning setting explicitly in `herdr_agent start` arguments rather than relying on inherited defaults. If the selected pair is unavailable, report it to the main thread for a routing decision rather than substituting another provider or model.
 
 This routing is a local recommendation based on the vendor's positioning: [Sol](https://developers.openai.com/api/docs/models/gpt-5.6-sol) for complex professional work, [Terra](https://developers.openai.com/api/docs/models/gpt-5.6-terra) for intelligence/cost balance, and [Luna](https://developers.openai.com/api/docs/models/gpt-5.6-luna) for cost-sensitive, high-volume workloads. A web lookup is not required for each dispatch.
 

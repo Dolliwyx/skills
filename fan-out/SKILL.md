@@ -28,19 +28,11 @@ Use the fewest workers that provide useful parallelism. If the task has no usefu
 
 Select the delegation route before launching workers:
 
-- When `HERDR_ENV=1` and Herdr tools are available, read and follow [herdr-delegation](../herdr-delegation/SKILL.md) for preflight, dispatch, recovery, and acceptance.
+- When `HERDR_ENV=1` and Herdr tools are available, read [Herdr quick usage](HERDR.md) for authorization, launch calls, recovery, and pane lifecycle.
 - Otherwise, use the environment's internal subagent tools to fan out the units.
 - Follow applicable authorization policies on either route. Report permission blockers rather than switching routes to bypass them. If neither route is available, report the blocker.
 
-For either route, honor explicit user model and reasoning choices; otherwise select per work unit:
-
-| Work unit | Model | Reasoning |
-| --- | --- | --- |
-| Complex implementation, ambiguous debugging, cross-cutting or security-sensitive work | `gpt-5.6-sol` | Medium for bounded complexity; high for difficult reasoning or edge cases |
-| Bounded features, tests, exploration, straightforward fixes and review | `gpt-5.6-terra` | Medium by default; low when straightforward to verify |
-| Mechanical edits, extraction, repetitive transformations with explicit rules | `gpt-5.6-luna` | Low |
-
-Choose reasoning by ambiguity, dependencies, and consequences, not task size alone. Reserve xhigh/max for unusually difficult work when lower effort is insufficient. Resolve available provider-qualified model IDs and supported reasoning settings from local configuration or model listings, and pass both explicitly at launch. If the selected model or reasoning control is unavailable, report the limitation and ask for a routing decision rather than silently substituting defaults.
+Before either route launches workers, read [model routing](MODELS.md) to select an explicit `openai-codex` model and reasoning level, and apply the [leaf-worker gate](LEAF-WORKERS.md) to prevent recursive delegation. Only the main agent may create workers or panes.
 
 Send each ready worker a self-contained brief:
 
@@ -49,13 +41,11 @@ Send each ready worker a self-contained brief:
 - Read-only or editing authority, owned files, constraints, and exclusions.
 - Expected output and acceptance check.
 - Return completed work, evidence or check results, assumptions, and blockers. Identify changed files when applicable.
-- Mandatory restriction for every Herdr worker and internal subagent: execute the assignment directly and preserve unrelated changes. Only the main agent may delegate. Do not create additional panes, spawn subagents, launch workflows, or assign work to existing agents through tools, CLIs, scripts, or any other mechanism. Return scope conflicts and requests for additional workers to the main agent.
-
-Where the harness supports worker tool restrictions, disable delegation and pane-creation capabilities for workers as well as including the mandatory brief restriction. Treat prompt-only restrictions as instructions, not a technical sandbox.
+- The mandatory restriction from the leaf-worker reference, included in the brief rather than supplied only as a link.
 
 Launch independent units concurrently within tool limits. Use the environment's supported completion mechanism and track each unit's state. While workers run, perform distinct integration preparation rather than duplicating their assignments.
 
-**Done:** every ready unit has a dispatched owner and a defined return contract.
+**Done:** every ready unit has a dispatched owner, a defined return contract, and enforced leaf-worker tool restrictions.
 
 ## 4. Collect and reconcile
 
