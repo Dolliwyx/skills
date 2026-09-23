@@ -8,15 +8,19 @@ This repository contains personal Codex skills.
 | ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `conventional-commits` | Create git commits using Conventional Commits with scoped, reviewable changes. Use when the user asks to commit changes, make a conventional commit, write a commit message, or prepare staged changes for commit.                                                                                                                                                     |
 | `create-pr-mr`         | Prepare and create pull requests or merge requests with clear summaries, test notes, and correct target branches. Use when the user asks to create, open, draft, update, or prepare a PR, pull request, MR, or merge request.                                                                                                                                          |
-| `fan-out` | Decompose a large task into independent subagent assignments, reconcile their results, and deliver a validated final output. |
 | `create-subagents` | Create or configure custom agent types for @tintinweb/pi-subagents when the user wants a new subagent, changes to an existing agent, or an override of Explore, Plan, or general-purpose. |
 | `google-developer-docs-style` | Write or edit developer documentation according to the Google developer documentation style guide. Use for tutorials, how-to guides, concepts, API or CLI references, README files, and documentation style reviews when Google style is requested or established for the project. |
+| `implement` | Execute the session's existing plan through independent leaf subagents, coordinator integration, and verification. |
 | `implementation-notes` | Maintains a running repo-root implementation-notes.html file that records how implementation decisions interpret, clarify, or diverge from a spec. Use when the user explicitly asks for implementation notes, maintaining implementation-notes.html, tracking decisions, capturing spec deviations, recording tradeoffs, or keeping running notes while implementing. |
 | `meeting-notes` | Generate structured meeting notes from agendas, transcripts, rough notes, or meeting summaries. Use when the user asks to create, organize, clean up, or format meeting notes. |
 | `obsidian-writing` | Write and maintain notes in the user's local Obsidian vault. Use when a task targets an Obsidian note, daily note, vault task, property, tag, wikilink, or folder. |
 | `ponytail`             | Runs a terse pre-code minimalism check: delete, standard library, native platform, installed dependency, one-liner, then minimum custom code. Use when writing, planning, reviewing, or reducing code, or when the user says “ponytail.”                                                                                                                                |
 | `shortcut-updates`     | Gets concise Shortcut story updates grouped for review. Use when user asks for Shortcut updates, unfinished stories, owned stories, story status summaries, or last updates/activity on Shortcut tickets.                                                                                                                                                             |
 | `support-relay` | Rewrite a technical braindump into a clear message for the support team. |
+
+## Deprecated skills
+
+- [`fan-out`](deprecated/fan-out/SKILL.md): superseded by `implement` for executing an existing session plan.
 
 ## Other skills in `~/.agents/skills`
 
