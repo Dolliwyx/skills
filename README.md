@@ -6,6 +6,7 @@ Personal agent skills, plus an inventory of external skills installed locally.
 
 | Skill | Description |
 | --- | --- |
+| [`architect`](architect/SKILL.md) | Design or review repository-grounded software architecture, with an explicit approval gate before implementation. |
 | [`conventional-commits`](conventional-commits/SKILL.md) | Create git commits using Conventional Commits with scoped, reviewable changes. Use when the user asks to commit changes, make a conventional commit, write a commit message, or prepare staged changes for commit. |
 | [`create-pr-mr`](create-pr-mr/SKILL.md) | Prepare and create pull requests or merge requests with clear change summaries, affected files, and correct target branches. Use when the user asks to create, open, draft, update, or prepare a PR, pull request, MR, or merge request. |
 | [`create-subagents`](create-subagents/SKILL.md) | Create or configure custom agents for pi-subagents, including updates to existing agents and overrides of bundled agents. |
