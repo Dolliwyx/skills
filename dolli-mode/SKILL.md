@@ -10,6 +10,8 @@ Use the accompanying prompt and relevant conversation context as the task. If no
 
 For explanations, investigations, and reviews, use gates 1–2 as needed, then deliver the requested read-only result using gate 3's visual guidance where useful; its implementation-approval gate does not apply. Implementation follows all five gates in order.
 
+For requests to architect, plan, or design a feature, workflow, or system, automatically read and follow [architect](../architect/SKILL.md) during gates 1–3. Use its architecture brief as the basis for gate 3's visual confirmation. Planning-only requests end with the brief; implementation still requires gate 3's explicit approval.
+
 Before approval, keep work read-only. Invoking this skill authorizes context exploration and, after approval, bounded worker delegation for the confirmed task. Consequential external actions require separate authorization. If a prerequisite is blocked, report it and pause dependent work.
 
 ## 1. Gather context

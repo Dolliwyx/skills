@@ -1,7 +1,6 @@
 ---
 name: architect
-description: Design or review repository-grounded software architecture, with an explicit approval gate before implementation.
-disable-model-invocation: true
+description: Architect, plan, or design features, workflows, and systems grounded in the repository, or review existing software architecture. Requires explicit approval before implementation.
 ---
 
 # Architect
