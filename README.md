@@ -19,6 +19,7 @@ Personal agent skills, plus an inventory of external skills installed locally.
 | [`ponytail`](ponytail/SKILL.md) | Runs a terse pre-code minimalism check -- delete, stdlib, native platform, installed dependency, one-liner, then minimum custom code. Use when writing code, planning implementation, reviewing code, reducing code, or when user says ponytail. |
 | [`shortcut-updates`](shortcut-updates/SKILL.md) | Gets concise Shortcut story updates grouped for review. Use when user asks for Shortcut updates, unfinished stories, owned stories, story status summaries, or last updates/activity on Shortcut tickets. |
 | [`support-relay`](support-relay/SKILL.md) | Rewrite a technical braindump into a clear message for the support team. |
+| [`writing-tickets`](writing-tickets/SKILL.md) | Draft or refine bugs, feature suggestions, and chores with concise prose and useful visuals. Confirm the draft and destination before publishing. |
 
 ## Deprecated skills
 
