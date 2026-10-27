@@ -21,11 +21,9 @@ Default to one commit per coherent concern, including for requests such as “co
 2. Identify the authorized files and hunks, including changes already staged. For commit requests, present an ordered commit plan with a purpose and scope for each group. Every authorized change must belong to exactly one group; order prerequisites first.
 3. For message-only requests, return the complete message without mutation. For staging-only requests, stage the authorized scope, verify the staged diff, and stop.
 4. For each planned commit, stage only that group's files or hunks. Compare the entire staged diff with the group's scope; proceed only when they match, including any previously staged changes.
-5. Write `type(scope): summary`, with a short body when useful to explain what changed and why, then commit non-interactively: `git commit -m "type(scope): summary" -m "Description."`.
+5. Write `type(scope): summary`, adding a body when useful (see Body / Description), then commit non-interactively: `git commit -m "type(scope): summary" -m "Description."`.
 6. Verify the resulting commit's files and diff, then repeat steps 4–6 for the next group.
 7. Report each commit's hash and purpose, plus any remaining changes.
-
-Use the second `-m` paragraph whenever there is enough useful context. Skip it only for trivial commits where the summary fully explains the change.
 
 ## Message
 
@@ -71,7 +69,7 @@ Good:
 
 ## Body / Description
 
-Prefer a short body after the summary when it adds useful context. Describe what changed and why; avoid restating the summary.
+Include a body when it adds useful context beyond the summary. Use one or more paragraphs to explain the motivation and any important implementation decisions.
 
 ```sh
 git commit \
