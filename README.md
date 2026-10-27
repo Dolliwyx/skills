@@ -9,7 +9,6 @@ Personal agent skills, plus an inventory of external skills installed locally.
 | [`architect`](architect/SKILL.md) | Design or review repository-grounded software architecture, with an explicit approval gate before implementation. |
 | [`changelog`](changelog/SKILL.md) | Create or update a changelog using Keep a Changelog. Use when asked to record notable changes, prepare a changelog for a release, or reconstruct release history. |
 | [`conventional-commits`](conventional-commits/SKILL.md) | Create git commits using Conventional Commits with scoped, reviewable changes. Use when the user asks to commit changes, make a conventional commit, write a commit message, or prepare staged changes for commit. |
-| [`create-pr-mr`](create-pr-mr/SKILL.md) | Prepare and create pull requests or merge requests with clear change summaries, affected files, and correct target branches. Use when the user asks to create, open, draft, update, or prepare a PR, pull request, MR, or merge request. |
 | [`create-subagents`](create-subagents/SKILL.md) | Create or configure custom agents for pi-subagents, including updates to existing agents and overrides of bundled agents. |
 | [`dolli-mode`](dolli-mode/SKILL.md) | Ground the task in code, clarify decisions, confirm intent visually, then implement and verify with bounded delegation when useful. |
 | [`implement`](implement/SKILL.md) | Execute the session's existing plan by delegating independent work to leaf subagents, integrating changes, and verifying the result. |
@@ -17,12 +16,13 @@ Personal agent skills, plus an inventory of external skills installed locally.
 | [`meeting-notes`](meeting-notes/SKILL.md) | Generate structured meeting notes from agendas, transcripts, rough notes, or meeting summaries. Use when the user asks to create, organize, clean up, or format meeting notes. |
 | [`obsidian-writing`](obsidian-writing/SKILL.md) | Write and maintain notes in the user's local Obsidian vault. Use when a task targets an Obsidian note, daily note, vault task, property, tag, wikilink, or folder. |
 | [`ponytail`](ponytail/SKILL.md) | Runs a terse pre-code minimalism check -- delete, stdlib, native platform, installed dependency, one-liner, then minimum custom code. Use when writing code, planning implementation, reviewing code, reducing code, or when user says ponytail. |
-| [`shortcut-updates`](shortcut-updates/SKILL.md) | Gets concise Shortcut story updates grouped for review. Use when user asks for Shortcut updates, unfinished stories, owned stories, story status summaries, or last updates/activity on Shortcut tickets. |
-| [`support-relay`](support-relay/SKILL.md) | Rewrite a technical braindump into a clear message for the support team. |
 | [`writing-tickets`](writing-tickets/SKILL.md) | Draft or refine bugs, feature suggestions, and chores with concise prose and useful visuals. Confirm the draft and destination before publishing. |
 
 ## Deprecated skills
 
+- [`create-pr-mr`](deprecated/create-pr-mr/SKILL.md): superseded by the external [`visual-pr`](https://www.skills.sh/humanlayer/skills/visual-pr) skill.
+- [`shortcut-updates`](deprecated/shortcut-updates/SKILL.md): archived Shortcut update skill.
+- [`support-relay`](deprecated/support-relay/SKILL.md): superseded by the external [`bro`](https://www.skills.sh/backnotprop/bro/bro) skill.
 - [`google-developer-docs-style`](deprecated/google-developer-docs-style/SKILL.md): superseded by the external `technical-writing` skill from [`cursor/plugins`](https://github.com/cursor/plugins).
 - [`fan-out`](deprecated/fan-out/SKILL.md): superseded by `implement` for executing an existing session plan.
 - [`herdr-delegation`](deprecated/herdr-delegation/SKILL.md): archived delegation skill.
