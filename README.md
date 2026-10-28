@@ -8,7 +8,7 @@ Personal agent skills, plus an inventory of external skills installed locally.
 | --- | --- |
 | [`architect`](architect/SKILL.md) | Design or review repository-grounded software architecture, with an explicit approval gate before implementation. |
 | [`changelog`](changelog/SKILL.md) | Create or update a changelog using Keep a Changelog. Use when asked to record notable changes, prepare a changelog for a release, or reconstruct release history. |
-| [`conventional-commits`](conventional-commits/SKILL.md) | Create git commits using Conventional Commits with scoped, reviewable changes. Use when the user asks to commit changes, make a conventional commit, write a commit message, or prepare staged changes for commit. |
+| [`commit`](commit/SKILL.md) | Create Conventional Commits or draft commit messages with motivation-focused bodies. |
 | [`create-subagents`](create-subagents/SKILL.md) | Create or configure custom agents for pi-subagents, including updates to existing agents and overrides of bundled agents. |
 | [`dolli-mode`](dolli-mode/SKILL.md) | Ground the task in code, clarify decisions, confirm intent visually, then implement and verify with bounded delegation when useful. |
 | [`implement`](implement/SKILL.md) | Execute the session's existing plan by delegating independent work to leaf subagents, integrating changes, and verifying the result. |
