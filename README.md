@@ -7,6 +7,8 @@ Personal agent skills, plus an inventory of external skills installed locally.
 | Skill | Description |
 | --- | --- |
 | [`architect`](architect/SKILL.md) | Design or review repository-grounded software architecture, with an explicit approval gate before implementation. |
+| [`bug-investigation`](bug-investigation/SKILL.md) | Investigate a bug with evidence, then request approval before applying the smallest justified fix. |
+| [`bug-prevention`](bug-prevention/SKILL.md) | Explicitly invoked analysis of a software bug or agent failure, followed by the smallest verified prevention change. |
 | [`changelog`](changelog/SKILL.md) | Create or update a changelog using Keep a Changelog. Use when asked to record notable changes, prepare a changelog for a release, or reconstruct release history. |
 | [`commit`](commit/SKILL.md) | Create Conventional Commits or draft commit messages with motivation-focused bodies. |
 | [`create-subagents`](create-subagents/SKILL.md) | Create or configure custom agents for pi-subagents, including updates to existing agents and overrides of bundled agents. |
