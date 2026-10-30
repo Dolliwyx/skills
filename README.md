@@ -7,8 +7,7 @@ Personal agent skills, plus an inventory of external skills installed locally.
 | Skill | Description |
 | --- | --- |
 | [`architect`](architect/SKILL.md) | Design or review repository-grounded software architecture, with an explicit approval gate before implementation. |
-| [`bug-investigation`](bug-investigation/SKILL.md) | Investigate a bug with evidence, then request approval before applying the smallest justified fix. |
-| [`bug-prevention`](bug-prevention/SKILL.md) | Explicitly invoked analysis of a software bug or agent failure, followed by the smallest verified prevention change. |
+| [`bug-diagnosis-retrospective`](bug-diagnosis-retrospective/SKILL.md) | Diagnose and reproduce bugs, seek fix approval, and retrospect on automated prevention. |
 | [`changelog`](changelog/SKILL.md) | Create or update a changelog using Keep a Changelog. Use when asked to record notable changes, prepare a changelog for a release, or reconstruct release history. |
 | [`commit`](commit/SKILL.md) | Create Conventional Commits or draft commit messages with motivation-focused bodies. |
 | [`create-subagents`](create-subagents/SKILL.md) | Create or configure custom agents for pi-subagents, including updates to existing agents and overrides of bundled agents. |
@@ -21,6 +20,8 @@ Personal agent skills, plus an inventory of external skills installed locally.
 | [`writing-tickets`](writing-tickets/SKILL.md) | Draft or refine bugs, feature suggestions, and chores with concise prose and useful visuals. Confirm the draft and destination before publishing. |
 
 ## Deprecated skills
+
+- [`bug-investigation`](deprecated/bug-investigation/SKILL.md) and [`bug-prevention`](deprecated/bug-prevention/SKILL.md): superseded by `bug-diagnosis-retrospective`.
 
 - [`create-pr-mr`](deprecated/create-pr-mr/SKILL.md): superseded by the external [`visual-pr`](https://www.skills.sh/humanlayer/skills/visual-pr) skill.
 - [`shortcut-updates`](deprecated/shortcut-updates/SKILL.md): archived Shortcut update skill.
